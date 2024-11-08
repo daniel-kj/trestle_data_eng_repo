@@ -1,0 +1,20 @@
+SELECT * FROM StudentTable;
+
+SELECT * FROM StudentTable WHERE age > 15;
+
+SELECT * FROM ClassTable ORDER BY class_name;
+
+SELECT class_id, COUNT(student_id) AS total_students FROM StudentTable GROUP BY class_id;
+
+SELECT StudentTable.first_name, StudentTable.last_name, ClassTable.class_id FROM StudentTable FULL JOIN ClassTable ON StudentTable.class_id = ClassTable.class_id;
+
+SELECT StudentTable.first_name AS student_first_name,
+StudentTable.last_name AS student_last_name,
+SubjectsTable.subject_name,
+TeacherTable.first_name AS teachers_first_name,
+TeacherTable.last_name AS teacher_last_name
+FROM StudentTable
+LEFT JOIN ClassTable ON StudentTable.class_id = ClassTable.class_id
+LEFT JOIN SubjectsTable ON StudentTable.class_id = SubjectsTable.class_id
+LEFT JOIN EnrollmentsTable ON StudentTable.student_id = EnrollmentsTable.student_id
+CROSS JOIN TeacherTable;
