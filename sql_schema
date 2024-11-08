@@ -1,0 +1,141 @@
+CREATE DATABASE SchoolManagementSystem;
+
+CREATE TABLE TeacherTable(
+  teacher_id INTEGER PRIMARY KEY,
+  first_name VARCHAR,
+  last_name VARCHAR,
+  subject VARCHAR);
+  
+CREATE TABLE ClassTable(
+  class_id INTEGER PRIMARY KEY,
+  class_name VARCHAR,
+  teacher_id INTEGER REFERENCES TeacherTable(teacher_id));
+
+CREATE TABLE StudentTable (
+  student_id INTEGER PRIMARY KEY,
+  first_name VARCHAR,
+  last_name VARCHAR,
+  age INTEGER,
+  gender CHAR,
+  class_id INTEGER REFERENCES ClassTable(class_id));
+  
+CREATE TABLE SubjectsTable(
+  subject_id INTEGER PRIMARY KEY,
+  subject_name VARCHAR,
+  class_id INTEGER REFERENCES ClassTable(class_id));
+  
+CREATE TABLE EnrollmentsTable(
+  enrollment_id INTEGER PRIMARY KEY,
+  student_id INTEGER REFERENCES StudentTable(student_id),
+  subject_id INTEGER REFERENCES SubjectsTable(subject_id),
+  enrollment_date DATE);
+  
+INSERT INTO TeacherTable(teacher_id, first_name, last_name, subject) VALUES
+(1, 'Alice', 'Johnson', 'Mathematics'),
+(2, 'Bob', 'Smith', 'English'),
+(3, 'Carol', 'White', 'Physics'),
+(4, 'David', 'Brown', 'Chemistry'),
+(5, 'Eva', 'Davis', 'Biology'),
+(6, 'Frank', 'Wilson', 'History'),
+(7, 'Grace', 'Moore', 'Geography'),
+(8, 'Henry', 'Taylor', 'Art'),
+(9, 'Isabella', 'Anderson', 'Physical Education'),
+(10, 'Jack', 'Thomas', 'Computer Science'),
+(11, 'Kate', 'Martin', 'Mathematics'),
+(12, 'Liam', 'Clark', 'English'),
+(13, 'Mia', 'Rodriguez', 'Physics'),
+(14, 'Noah', 'Lewis', 'Chemistry'),
+(15, 'Olivia', 'Walker', 'Biology'),
+(16, 'Peter', 'Young', 'History'),
+(17, 'Quinn', 'Allen', 'Geography'),
+(18, 'Rachel', 'King', 'Art'),
+(19, 'Sam', 'Wright', 'Physical Education'),
+(20, 'Tina', 'Scott', 'Computer Science');
+
+INSERT INTO ClassTable(class_id, class_name, teacher_id) VALUES
+(1, 'Mathematics 101', 1),
+(2, 'English 101', 2),
+(3, 'Physics 101', 3),
+(4, 'Chemistry 101', 4),
+(5, 'Biology 101', 5),
+(6, 'History 101', 6),
+(7, 'Geography 101', 7),
+(8, 'Art 101', 8),
+(9, 'Physical Education 101', 9),
+(10, 'Computer Science 101', 10),
+(11, 'Mathematics 201', 1),
+(12, 'English 201', 2),
+(13, 'Physics 201', 3),
+(14, 'Chemistry 201', 4),
+(15, 'Biology 201', 5),
+(16, 'History 201', 6),
+(17, 'Geography 201', 7),
+(18, 'Art 201', 8),
+(19, 'Physical Education 201', 9),
+(20, 'Computer Science 201', 10);
+
+INSERT INTO StudentTable(student_id, first_name, last_name, age, gender, class_id) VALUES
+(1, 'Liam', 'Turner', 15, 'M', 1),
+(2, 'Emma', 'Lopez', 14, 'F', 2),
+(3, 'Noah', 'Lee', 16, 'M', 3),
+(4, 'Olivia', 'Perez', 15, 'F', 4),
+(5, 'Elijah', 'Nguyen', 14, 'M', 5),
+(6, 'Ava', 'Garcia', 15, 'F', 6),
+(7, 'Sophia', 'Martinez', 14, 'F', 7),
+(8, 'James', 'Hernandez', 16, 'M', 8),
+(9, 'Isabella', 'King', 15, 'F', 9),
+(10, 'Mason', 'Clark', 14, 'M', 10),
+(11, 'Mia', 'Lewis', 16, 'F', 11),
+(12, 'Lucas', 'Young', 15, 'M', 12),
+(13, 'Harper', 'Allen', 14, 'F', 13),
+(14, 'Evelyn', 'Scott', 15, 'F', 14),
+(15, 'Aiden', 'Green', 16, 'M', 15),
+(16, 'Ella', 'Baker', 14, 'F', 16),
+(17, 'Amelia', 'Gonzalez', 15, 'F', 17),
+(18, 'Jack', 'Nelson', 16, 'M', 18),
+(19, 'Charlotte', 'Carter', 14, 'F', 19),
+(20, 'Benjamin', 'Mitchell', 15, 'M', 20);
+
+INSERT INTO SubjectsTable(subject_id, subject_name, class_id) VALUES
+(1, 'Algebra', 1),
+(2, 'Literature', 2),
+(3, 'Mechanics', 3),
+(4, 'Organic Chemistry', 4),
+(5, 'Genetics', 5),
+(6, 'World History', 6),
+(7, 'Earth Science', 7),
+(8, 'Painting', 8),
+(9, 'Gymnastics', 9),
+(10, 'Programming', 10),
+(11, 'Calculus', 11),
+(12, 'Advanced Literature', 12),
+(13, 'Electromagnetism', 13),
+(14, 'Inorganic Chemistry', 14),
+(15, 'Microbiology', 15),
+(16, 'European History', 16),
+(17, 'Environmental Science', 17),
+(18, 'Sculpture', 18),
+(19, 'Athletics', 19),
+(20, 'Data Structures', 20);
+
+INSERT INTO EnrollmentsTable(enrollment_id, student_id, subject_id, enrollment_date) VALUES
+(1, 1, 1, '2023-01-15'),
+(2, 2, 2, '2023-01-16'),
+(3, 3, 3, '2023-01-17'),
+(4, 4, 4, '2023-01-18'),
+(5, 5, 5, '2023-01-19'),
+(6, 6, 6, '2023-01-20'),
+(7, 7, 7, '2023-01-21'),
+(8, 8, 8, '2023-01-22'),
+(9, 9, 9, '2023-01-23'),
+(10, 10, 10, '2023-01-24'),
+(11, 11, 11, '2023-01-25'),
+(12, 12, 12, '2023-01-26'),
+(13, 13, 13, '2023-01-27'),
+(14, 14, 14, '2023-01-28'),
+(15, 15, 15, '2023-01-29'),
+(16, 16, 16, '2023-01-30'),
+(17, 17, 17, '2023-01-31'),
+(18, 18, 18, '2023-02-01'),
+(19, 19, 19, '2023-02-02'),
+(20, 20, 20, '2023-02-03');
